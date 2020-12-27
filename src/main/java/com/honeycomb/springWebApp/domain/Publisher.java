@@ -14,6 +14,9 @@ public class Publisher {
     private String city;
     private String state;
 
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
 
     public Publisher() {
     }
@@ -64,6 +67,14 @@ public class Publisher {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     @Override

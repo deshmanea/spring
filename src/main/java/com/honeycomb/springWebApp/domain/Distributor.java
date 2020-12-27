@@ -1,10 +1,9 @@
 package com.honeycomb.springWebApp.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Distributor {
@@ -13,8 +12,10 @@ public class Distributor {
     private Long id;
     private String distributorName;
 
-    public Distributor() {
+    @ManyToMany
+    private Set<Publisher> publishers = new HashSet<>();
 
+    public Distributor() {
     }
 
     public Distributor(Long id, String distributorName) {
@@ -36,6 +37,14 @@ public class Distributor {
 
     public void setDistributorName(String distributorName) {
         this.distributorName = distributorName;
+    }
+
+    public Set<Publisher> getPublishers() {
+        return publishers;
+    }
+
+    public void setPublishers(Set<Publisher> publishers) {
+        this.publishers = publishers;
     }
 
     @Override
